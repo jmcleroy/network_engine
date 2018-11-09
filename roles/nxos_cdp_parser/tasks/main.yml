@@ -1,0 +1,11 @@
+---
+- name: SHOW VERSION
+  nxos_command:
+    commands:
+      - show cdp neighbors detail
+  register: version
+
+- name: PARSE SHOW VERSION
+  command_parser:
+    file: "parsers/nxos_cdp.yml"
+    content: "{{ version.stdout.0 }}"
