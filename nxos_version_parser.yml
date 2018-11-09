@@ -4,4 +4,4 @@
 
   roles:
   - ansible-network.network-engine
-  - version_parser
+  - nxos_version_parser
