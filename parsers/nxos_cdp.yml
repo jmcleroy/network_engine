@@ -11,25 +11,25 @@
     - name: match device id
       pattern_match:
         regex: "Device ID:(?P<device_id>.+)"
-        contents: "{{ item }}"
+#        contents: "{{ item }}"
       register: device_id
 
     - name: match local port
       pattern_match:
         regex: "Interface:.(?P<local_port>.+),"
-        contents: "{{ item }}"
+#        contents: "{{ item }}"
       register: local_port
 
     - name: match remote port
       pattern_match:
         regex: "Port ID \\(outgoing port\\): (?P<remote_port>.+)"
-        contents: "{{ item }}"
+#        contents: "{{ item }}"
       register: remote_port
 
     - name: match mgmt IP address
       pattern_match:
         regex: "(Mgmt|Management) address\\(es\\):\\s.+(IPv4|IP) (A|a)ddress: (?P<mgmt_ip>.+)"
-        contents: "{{ item }}"
+#        contents: "{{ item }}"
       register: mgmt_ip
 
   loop: "{{ context }}"
