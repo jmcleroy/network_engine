@@ -3,5 +3,5 @@
   gather_facts: no
 
   roles:
-  - network_engine
+  - ansible-network.network-engine
   - version_parser
