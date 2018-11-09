@@ -10,3 +10,6 @@
     file: "parsers/nxos_version.yml"
     content: "{{ version.stdout.0 }}"
 
+- name: DISPLAY SERIAL NUMBER
+  debug:
+    msg: "The serial number is:{{ ansible_facts.network_facts.nxos.version.hardware.serial_number}}"
