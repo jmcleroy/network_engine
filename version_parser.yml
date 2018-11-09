@@ -3,4 +3,5 @@
   gather_facts: no
 
   roles:
+  - network_engine
   - version_parser
