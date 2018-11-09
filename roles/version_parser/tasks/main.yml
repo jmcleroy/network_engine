@@ -10,6 +10,6 @@
     file: "parsers/nxos_version.yml"
     content: "{{ version.stdout.0 }}"
 
-- name: DISPLAY VERSIOM NUMBER
+- name: DISPLAY VERSION NUMBER
   debug:
-    msg: "The serial number is:{{ ansible_facts.network_facts.nxos.version.software.kickstart.version }}"
+    msg: "The version number is:{{ ansible_facts.network_facts.nxos.version.software.kickstart.version }}"
