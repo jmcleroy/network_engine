@@ -44,16 +44,15 @@
   json_template:
     template:
       #- key: neighbors
-      - key: neighbors
-        value: "{{ item.local_port.matches }}" #| expand_interface_name }}"
+      - key: "{{ item.local_port.matches }}" #| expand_interface_name }}"
         #elements:
-        #object:
-      - key: port
-        value: "{{ item.local_port.matches }}" #  | expand_interface_name }}"
-      - key: neighbor
-        value: "{{ item.remote_host.matches }}"
-      - key: neighbor_port
-        value: "{{ item.remote_port.matches }}"
+        object:
+          - key: port
+            value: "{{ item.local_port.matches }}" #  | expand_interface_name }}"
+          - key: neighbor
+            value: "{{ item.remote_host.matches }}"
+          - key: neighbor_port
+            value: "{{ item.remote_port.matches }}"
   #repeat_for: "{{ matches }}"
 
 #  register: cdp_list
