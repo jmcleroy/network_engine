@@ -2,3 +2,5 @@
 - name: set fact
   set_fact:
     cdp_interface: ansible_facts.cdp
+
+- debug: cdp_interface
