@@ -48,7 +48,7 @@
         #elements:
         object:
           - key: port
-            value: "{{ item.local_port.matches.0  | expand_interface_name }}"
+            value: "{{ item.local_port.matches.0 }}" #  | expand_interface_name }}"
           - key: neighbor
             value: "{{ item.remote_host.matches.0 }}"
           - key: neighbor_port
