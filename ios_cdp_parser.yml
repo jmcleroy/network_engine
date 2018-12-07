@@ -5,3 +5,4 @@
   roles:
   - ansible-network.network-engine
   - ios_cdp_parser
+  - ios_cdp_vlan_add
