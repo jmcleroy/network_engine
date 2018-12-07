@@ -39,11 +39,11 @@
   json_template:
     template:
       - key: remote_device
-        value: "{{ item.remote_host.matches.0 }}"
+        value: "{{ item.remote_host.matches }}"
       - key: local_port
-        value: "{{ item.local_port.matches.0 }}"
+        value: "{{ item.local_port.matches }}"
       - key: remote_port
-        value: "{{ item.remote_host.matches.0 }}"
+        value: "{{ item.remote_host.matches }}"
 #      - key: mgmt_ip
 #        value: "{{ item.mgmt_ip.mgmt_ip }}"
 
