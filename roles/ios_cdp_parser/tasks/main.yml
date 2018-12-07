@@ -7,5 +7,5 @@
 
 - name: PARSE CDP
   command_parser:
-    file: "parsers/nxos_cdp.yml"
+    file: "parsers/ios_cdp.yml"
     content: "{{ version.stdout.0 }}"
