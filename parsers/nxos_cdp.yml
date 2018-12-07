@@ -1,69 +1,56 @@
 ---
+- name: parser meta data
+  parser_metadata:
+    version: 1.0
+    command: show cdp neighbors detail
+    network_os: ios
+
 - name: match sections
   pattern_match:
-    regex: "^-------------------------"
+    regex: "^-----.*"
     match_all: yes
     match_greedy: yes
   register: context
 
-- name: match cdp info
+- name: parse cdp neighbors
   pattern_group:
-    - name: match device id
+    - name: parse local port
       pattern_match:
-        regex: "Device ID:(?P<device_id>.+)"
-#        contents: "{{ item }}"
-      register: device_id
-
-    - name: match local port
-      pattern_match:
-        regex: "Interface:.(?P<local_port>.+),"
-#        contents: "{{ item }}"
+        regex: '^Interface: ([^,]*)'
+        content: "{{ item }}"
       register: local_port
 
-    - name: match remote port
+    - name: parse remote prort
       pattern_match:
-        regex: "Port ID \\(outgoing port\\): (?P<remote_port>.+)"
-#        contents: "{{ item }}"
+        regex: 'Port ID \(outgoing port\): (.*)$'
+        content: "{{ item }}"
       register: remote_port
 
-#    - name: match mgmt IP address
-#      pattern_match:
-#        regex: "(Mgmt|Management) address\\(es\\):\\s.+(IPv4|IP) (A|a)ddress: (?P<mgmt_ip>.+)"
-#        contents: "{{ item }}"
-#      register: mgmt_ip
+    - name: parse remote host
+      pattern_match:
+        regex: 'Device ID: (.*)$'
+        content: "{{ item }}"
+      register: remote_host
 
   loop: "{{ context }}"
-  register: devices
+  register: matches
 
-- name: template list
+- name: build cdp neighbor facts
+  loop: "{{ matches }}"
+  register: cdp
+  export: yes
+  export_as: dict
+  extend: "{{ toplevel | default('cisco_ios') }}"
   json_template:
     template:
-      - key: remote_device
-        value: "{{ item.device_id.device_id }}"
-      - key: local_port
-        value: "{{ item.local_port.local_port }}"
-      - key: remote_port
-        value: "{{ item.remote_port.remote_port }}"
-#      - key: mgmt_ip
-#        value: "{{ item.mgmt_ip.mgmt_ip }}"
-
-  register: cdp_list
-  loop: "{{ devices }}"
-
-- name: template hash
-  json_template:
-    template:
-      - key: "{{ item.device_id.device_id }}"
+      #- key: neighbors
+      - key: "{{ item.local_port.matches.0  | expand_interface_name }}"
+        #elements:
         object:
-        - key: local_port
-          value: "{{ item.local_port.local_port }}"
-        - key: remote_port
-          value: "{{ item.remote_port.remote_port }}"
-
-  register: cdp_hash
-  loop: "{{ devices }}"
-
-- name: set fact
-  export_facts:
-    neighbors_list: "{{ cdp_list }}"
-    neighbors_hash: "{{ cdp_hash }}"
+          #- key: port
+          #  value: "{{ item.local_port.matches.0  | expand_interface_name }}"
+          - key: neighbor
+            value: "{{ item.remote_host.matches.0 }}"
+          - key: neighbor_port
+            value: "{{ item.remote_port.matches.0 }}"
+      #repeat_for: "{{ matches }}"
