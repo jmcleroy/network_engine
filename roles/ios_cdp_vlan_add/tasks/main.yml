@@ -1,7 +1,7 @@
 ---
 - name: set fact
   set_fact:
-    cdp_interface: "{{ ansible_facts.cdp.Interface*.port }}"
+    cdp_interface: "{{ ansible_facts.cdp.*.port }}"
 
 - debug:
     msg: "{{ cdp_interface }}"
