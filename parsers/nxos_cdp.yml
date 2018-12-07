@@ -26,11 +26,11 @@
 #        contents: "{{ item }}"
       register: remote_port
 
-    - name: match mgmt IP address
-      pattern_match:
-        regex: "(Mgmt|Management) address\\(es\\):\\s.+(IPv4|IP) (A|a)ddress: (?P<mgmt_ip>.+)"
+#    - name: match mgmt IP address
+#      pattern_match:
+#        regex: "(Mgmt|Management) address\\(es\\):\\s.+(IPv4|IP) (A|a)ddress: (?P<mgmt_ip>.+)"
 #        contents: "{{ item }}"
-      register: mgmt_ip
+#      register: mgmt_ip
 
   loop: "{{ context }}"
   register: devices
