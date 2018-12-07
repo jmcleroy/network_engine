@@ -46,13 +46,13 @@
       #- key: neighbors
       - key: "{{ item.local_port.matches.0 }}" #| expand_interface_name }}"
         #elements:
-        #object:
-      - key: port
-        value: "{{ item.local_port.matches.0 }}" #  | expand_interface_name }}"
-      - key: neighbor
-        value: "{{ item.remote_host.matches.0 }}"
-      - key: neighbor_port
-        value: "{{ item.remote_port.matches.0 }}"
+        object:
+          - key: port
+            value: "{{ item.local_port.matches.0 }}" #  | expand_interface_name }}"
+          - key: neighbor
+            value: "{{ item.remote_host.matches.0 }}"
+          - key: neighbor_port
+            value: "{{ item.remote_port.matches.0 }}"
   #repeat_for: "{{ matches }}"
 
 #  register: cdp_list
