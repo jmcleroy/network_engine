@@ -40,11 +40,11 @@
   register: cdp
   export: yes
   export_as: dict
-  extend: "{{ toplevel | default('cisco_ios') }}"
+#  extend: "{{ toplevel | default('cisco_ios') }}"
   json_template:
     template:
       #- key: neighbors
-      - key: "{{ item.local_port.matches.0  | expand_interface_name }}"
+      - key: "{{ item.local_port.matches.0 }} # | expand_interface_name }}"
         #elements:
         object:
           #- key: port
@@ -53,4 +53,4 @@
             value: "{{ item.remote_host.matches.0 }}"
           - key: neighbor_port
             value: "{{ item.remote_port.matches.0 }}"
-       #repeat_for: "{{ matches }}"
+      repeat_for: "{{ matches }}"
