@@ -54,7 +54,7 @@
         value: "{{ item.remote_host.matches.0 }}"
       - key: neighbor_port
         value: "{{ item.remote_port.matches.0 }}"
-    repeat_for: "{{ matches }}"
+#    repeat_for: "{{ matches }}"
 
   register: cdp_list
   loop: "{{ matches }}"
