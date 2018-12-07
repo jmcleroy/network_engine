@@ -44,8 +44,8 @@
         value: "{{ item.local_port.local_port }}"
       - key: remote_port
         value: "{{ item.remote_port.remote_port }}"
-      - key: mgmt_ip
-        value: "{{ item.mgmt_ip.mgmt_ip }}"
+#      - key: mgmt_ip
+#        value: "{{ item.mgmt_ip.mgmt_ip }}"
 
   register: cdp_list
   loop: "{{ devices }}"
