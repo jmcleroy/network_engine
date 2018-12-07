@@ -35,40 +35,26 @@
   loop: "{{ context }}"
   register: matches
 
-- name: template list
+- name: build cdp neighbor facts
+  loop: "{{ matches }}"
+  register: cdp
+  export: yes
+  export_as: dict
+#  extend: "{{ toplevel | default('cisco_ios') }}"
   json_template:
     template:
-      - key: remote_device
-        value: "{{ item.remote_host.matches }}"
-      - key: local_port
-        value: "{{ item.local_port.matches }}"
-      - key: remote_port
-        value: "{{ item.remote_host.matches }}"
-#      - key: mgmt_ip
-#        value: "{{ item.mgmt_ip.mgmt_ip }}"
-
-  register: cdp_list
-  loop: "{{ matches }}"
-#- name: build cdp neighbor facts
-#  loop: "{{ matches }}"
-#  register: cdp
-#  export: yes
-#  export_as: dict
-#  extend: "{{ toplevel | default('cisco_ios') }}"
-#  json_template:
-#    template:
       #- key: neighbors
-#      - key: neighbors
-#        value: "{{ item.local_port.matches.0 }}" #| expand_interface_name }}"
+      - key: neighbors
+        value: "{{ item.local_port.matches }}" #| expand_interface_name }}"
         #elements:
         #object:
-#      - key: port
-#        value: "{{ item.local_port.matches.0 }}" #  | expand_interface_name }}"
-#      - key: neighbor
-#        value: "{{ item.remote_host.matches.0 }}"
-#      - key: neighbor_port
-#        value: "{{ item.remote_port.matches.0 }}"
-#    repeat_for: "{{ matches }}"
+      - key: port
+        value: "{{ item.local_port.matches }}" #  | expand_interface_name }}"
+      - key: neighbor
+        value: "{{ item.remote_host.matches }}"
+      - key: neighbor_port
+        value: "{{ item.remote_port.matches }}"
+  #repeat_for: "{{ matches }}"
 
 #  register: cdp_list
 #  loop: "{{ matches }}"
