@@ -1,8 +1,8 @@
 ---
 - name: set fact
   set_fact:
-    cdp_interface: "{{ ansible_facts.cdp.?.port }}"
+    cdp_interface: "{{ ansible_facts.cdp.neighbors.port }}"
 
-#- debug:
-#    msg: "{{ cdp_interface }}"
-#  when: ansible_facts.cdp.?.port == "nx-osv-1(TB00000000B)"
+- debug:
+    msg: "{{ cdp_interface }}"
+  when: ansible_facts.cdp.neighbors.neighbor == "nx-osv-1(TB00000000B)"
