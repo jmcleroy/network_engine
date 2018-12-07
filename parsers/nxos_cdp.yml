@@ -3,7 +3,7 @@
   parser_metadata:
     version: 1.0
     command: show cdp neighbors detail
-    network_os: ios
+    network_os: nxos
 
 - name: match sections
   pattern_match:
