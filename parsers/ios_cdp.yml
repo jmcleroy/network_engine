@@ -48,7 +48,7 @@
 #        value: "{{ item.mgmt_ip.mgmt_ip }}"
 
   register: cdp_list
-  loop: "{{ devices }}"
+  loop: "{{ matches }}"
 #- name: build cdp neighbor facts
 #  loop: "{{ matches }}"
 #  register: cdp
