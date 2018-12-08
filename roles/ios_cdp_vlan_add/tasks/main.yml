@@ -4,4 +4,4 @@
 
 - debug:
     msg: "{{ cdp_interface }}"
-  when: cdpinterface | search('nx')
+  when: [cdpinterface] | search('nx')
