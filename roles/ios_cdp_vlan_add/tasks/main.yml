@@ -1,7 +1,7 @@
 ---
 - set_fact:
-    cdp_interface: ansible_facts.cdp.neighbors
+    cdp_interface: "{{ ansible_facts.cdp.neighbors }}"
 
-#- debug:
-#    msg: "{{ cdp_interface }}"
-#  when: ansible_facts.cdp.neighbors.neighbor == "nx-osv-1(TB00000000B)"
+- debug:
+    msg: "{{ cdp_interface }}"
+  when: ansible_facts.cdp.neighbors == "nx-osv-1(TB00000000B)"
