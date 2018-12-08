@@ -4,4 +4,4 @@
 
 - debug:
     msg: "{{ cdp_interface }}"
-  when: '"nx-osv-1(TB00000000B)" in cdpinterface()'
+  when: "'nx-osv-1(TB00000000B)' in cdpinterface()"
