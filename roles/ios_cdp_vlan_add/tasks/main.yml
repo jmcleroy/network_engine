@@ -4,4 +4,4 @@
 
 - debug:
     msg: "{{ cdp_interface }}"
-  when: ansible_facts.cdp.neighbors == "nx-osv-1(TB00000000B)"
+  when: "nx-osv-1(TB00000000B)" in cdp_interface()
