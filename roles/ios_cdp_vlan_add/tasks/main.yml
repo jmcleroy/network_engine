@@ -1,6 +1,6 @@
 ---
 - set_fact:
-    cdpinterface: "{{ ansible_facts.cdp.neighbors }}"
+    cdpinterface: "{{ ansible_facts.cdp }}"
 
 - debug:
     msg: "{{ cdp_interface }}"
