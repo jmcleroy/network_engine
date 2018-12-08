@@ -4,4 +4,4 @@
 
 - debug:
     msg: "{{ cdp_interface }}"
-  when: "'nx' in output"
+  when: cdpinterface.find('{{ nx }}') == -1
