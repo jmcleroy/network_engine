@@ -1,4 +1,4 @@
-{% for interface, details in my_ansible_facts['cdpinterface'].items() %}
+{% for interface, details in ansible_facts.cisco_ios['cdp'].items() %}
 interface {{ interface }}
   switchport mode access
 {% if 'nx-osv-1' in details.get('neighbor') %}
