@@ -32,6 +32,12 @@
         content: "{{ item }}"
       register: remote_host
 
+    - name: parse remote type
+      pattern_match:
+        regex: 'Platform: (.*)$'
+        content: "{{ item }}"
+      register: remote_type
+
   loop: "{{ context }}"
   register: matches
 
@@ -69,6 +75,8 @@
             value: "{{ item.remote_host.matches.0 }}"
           - key: neighbor_port
             value: "{{ item.remote_port.matches.0 }}"
+          - key: neighbor_type
+            value: "{{ item.remote_type.matches.0 }}"
         repeat_for: "{{ matches }}"
 
 - register: cdp_list
