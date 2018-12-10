@@ -1,5 +1,5 @@
 {% for interface, details in ansible_facts.cisco_ios['cdp'].items() %}
-{% if 'nx' in details.get('neighbor_type') %}
+{% if 'N7K' in details.get('neighbor_type') %}
 interface {{ interface }}
   switchport mode access
   voice vlan 1067
