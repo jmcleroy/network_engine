@@ -7,6 +7,6 @@
 #  when: ansible_facts.cisco_ios.cdp
 
 - name: render config
-  template:
+  ios_config:
     src: test_cdp.j2
     dest: "{{ inventory_hostname}}.cdp.cfg"

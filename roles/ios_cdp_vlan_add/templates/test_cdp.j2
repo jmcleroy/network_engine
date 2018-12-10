@@ -2,6 +2,6 @@
 interface {{ interface }}
   switchport mode access
 {% if 'nx-osv-1' in details.get('neighbor') %}
-  vlan 555
+  voice vlan 1067
 {% endif %}
 {% endfor %}
