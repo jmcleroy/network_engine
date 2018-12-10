@@ -1,0 +1,7 @@
+{% for interface, details in my_ansible_facts['cdpinterface'].items() %}
+interface {{ interface }}
+  switchport mode access
+{% if 'nx-osv-1' in details.get('neighbor') %}
+  vlan 555
+{% endif %}
+{% endfor %}
