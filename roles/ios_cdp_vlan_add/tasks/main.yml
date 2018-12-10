@@ -9,4 +9,4 @@
 - name: render config
   ios_config:
     src: test_cdp.j2
-    dest: "{{ inventory_hostname}}.cdp.cfg"
+#    dest: "{{ inventory_hostname}}.cdp.cfg"
